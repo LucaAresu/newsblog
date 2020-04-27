@@ -8,6 +8,8 @@
     <title>Newsblog</title>
 </head>
 <body>
+@component('layouts.navbar')
+@endcomponent
     @auth
         @if(Auth::user()->isStaff())
             <a href="{{route('staff_index')}}">Sezione Staff</a>

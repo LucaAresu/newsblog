@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Section;
+use Gate;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -19,23 +20,36 @@ class SectionController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *@param  \Illuminate\Http\Request  $req
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     {
-        //
+        if(Gate::denies('create-section', $req->user()))
+            redirect('/');
+
+        $sections = Section::all();
+        return view('staff.section.index',compact('sections'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('create-section', $request->user());
+
+        $sec = new Section();
+        $request->validate(['name' => 'required']);
+        $sec->name = $request->name;
+        $sec->save();
+
+        return back();
+
     }
 
     /**

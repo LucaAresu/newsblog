@@ -13,7 +13,7 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name' => 'admin',
+                'name' => 'Section administrator',
                 'postNews' => true,
                 'isStaff' => true,
                 'approveNews' => true,
@@ -21,7 +21,7 @@ class RoleSeeder extends Seeder
                 'promoteUsers' => true,
             ],
                 [
-                'name' => 'editor',
+                'name' => 'Editor',
                 'isStaff' => true,
                 'postNews' => true,
                 'approveNews' => true,
@@ -29,7 +29,7 @@ class RoleSeeder extends Seeder
                 'promoteUsers' => false,
             ],
             [
-                'name' => 'newser',
+                'name' => 'Newser',
                 'isStaff' => true,
                 'postNews' => true,
                 'approveNews' => false,
@@ -37,7 +37,7 @@ class RoleSeeder extends Seeder
                 'promoteUsers' => false,
             ],
             [
-                'name' => 'moderator',
+                'name' => 'Moderator',
                 'isStaff' => true,
                 'postNews' => false,
                 'approveNews' => false,
@@ -45,7 +45,7 @@ class RoleSeeder extends Seeder
                 'promoteUsers' => false,
             ],
             [
-                'name' => 'user',
+                'name' => 'User',
                 'isStaff' => false,
                 'postNews' => false,
                 'approveNews' => false,

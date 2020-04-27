@@ -1,0 +1,138 @@
+:root {
+    --sfondo: #000000;
+    --sfondoNavbar: #1A1A1A;
+    --sfondoMain: #1a1a1a;
+
+    --navBarHover: #7EC6D8;
+    --tableHover: #324a5f;
+
+    --formColor: #7EC6D8;
+    --formColorTextHover: #1a1a1a; /*sfondo main*/
+
+
+    --textColor: #eee;
+    --textColorError: #FF595E;
+    --textColorMessage: #8AC926;
+
+    --border: #ccc9dc;
+    --border-radius: 5px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+html, body {
+
+    background-color: var(--sfondo);
+    color: var(--textColor);
+}
+
+.navbar {
+    background-color: var(--sfondoNavbar);
+    border-bottom: 1px solid var(--sfondo);
+}
+.navbar ul {
+    list-style-type: none;
+    margin-left: 3rem;
+}
+.navbar li {
+    display: inline-block;
+}
+.navbar li a {
+    display: inline-block;
+    color: var(--textColor);
+    text-decoration: none;
+    padding: 1rem;
+}
+.navbar li a:hover:not(.active) {
+    color: var(--navBarHover);
+}
+
+.navbar .active {
+    color: #886DA9;
+}
+
+main {
+    background-color: var(--sfondoMain);
+    width: 50%;
+    margin: auto;
+    padding: 1rem;
+    border-radius:  0 0 var(--border-radius) var(--border-radius);}
+
+main table {
+    width: 100%;
+    padding: 1rem;
+    border-collapse: collapse;
+    border-spacing: 0.5rem;
+}
+main table tr:not(:first-child):hover {
+    background-color: var(--tableHover);
+}
+main table td,th {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+main table tr:nth-child(even) {
+}
+
+main h1 {
+    text-align: center;
+
+}
+main form {
+    margin: auto;
+    width: 40%;
+}
+.form-staff {
+    margin: 0.5rem 0;
+    display: block;
+}
+.form-staff label {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    display: block;
+}
+.form-staff input {
+    padding: 0.6rem;
+    border: none;
+    width: 100%;
+    border-radius: var(--border-radius);
+    color: var(--textColor);
+    background-color: inherit;
+    border: 1px solid var(--formColor);
+}
+main form button {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: var(--border-radius);
+    border: none;
+    color: var(--formColor);
+    background-color: inherit;
+    border: 1px solid var(--formColor);
+}
+main form button:hover {
+    background-color: var(--formColor);
+    color: var(--formColorTextHover);
+}
+
+select {
+    padding: 0.5rem;
+}
+
+
+.selected {
+    background-color: var(--border);
+}
+
+.error {
+    margin: 0.3rem;
+    text-align: center;
+    color: var(--textColorError);
+}
+.success {
+    text-align: center;
+    color: var(--textColorMessage);
+}

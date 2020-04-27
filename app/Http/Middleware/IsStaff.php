@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Auth;
 use Closure;
+use function redirect;
 
 class isStaff
 {
@@ -16,9 +17,9 @@ class isStaff
      */
     public function handle($request, Closure $next)
     {
-        //dd($request->user()->role);
-        if($request->user()->role === 'user')
-            return redirect()->route('/');
+        if(!$request->user()->isStaff()) {
+            return redirect('/');
+        }
         return $next($request);
     }
 }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','HomeController@index')->middleware('staff');
+Route::get('/','HomeController@index')->name('index');
 
 Auth::routes();
 

@@ -6,6 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+/**
+ * App\User
+ *
+ * @mixin \Eloquent
+ */
 
 class User extends Authenticatable
 {
@@ -40,12 +45,38 @@ class User extends Authenticatable
     ];
 
     public function isStaff() {
-        if($this->role->isStaff)
+        if($this->isAdmin)
             return true;
+        $sections = $this->sections;
+        foreach($sections as $section)
+            if($this->getRole($section)->isStaff)
+                return true;
         return false;
+
     }
 
-    public function role() {
-        return $this->belongsTo(Role::class);
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class)->withPivot('role_id');
+    }
+
+    public function getRole(Section $section) {
+        if($this->hasRole($section))
+            return Role::find($this->sections()->where('section_id', $section->id)->first()->pivot->role_id);
+        else
+            return Role::where('name','User')->first();
+    }
+
+    public function hasRole(Section $section)
+    {
+        return (boolean) $this->sections()->find($section->id);
+    }
+
+    public function promote(Section $section, Role $role)
+    {
+        if(!$this->hasRole($section ))
+            $this->sections()->attach($section->id, ['role_id' => $role->id]);
+        else
+            $this->sections()->update(['section_id' => $section->id, 'role_id' => $role->id]);
     }
 }
